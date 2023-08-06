@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifdef _WIN32
 #include <conio.h>
+#endif
+
+#ifdef __linux__
+#include "input-utils.h"
+#endif
 #define OR ||
 #define AND &&
 
@@ -145,8 +151,8 @@ void board_getinput()
 #ifdef __linux__
 		if (input == '\033')
 		{
-			getchar();
-			switch ((input = getchar()))
+			getch();
+			switch ((input = getch()))
 			{
 			case 'A': // up
 				if (curr != 0 AND curr != 1 AND curr != 2)
