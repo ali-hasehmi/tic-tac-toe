@@ -13,11 +13,18 @@
 		board_print();
 
 
-
+		getchar();
 	return 0; 
 }
 void board_init(){
 
+	#ifdef _WIN32
+		system("chcp 65001");
+	#endif
+	
+	#ifdef __linux__
+		printf("this program is running on linux operating system!\n");
+	#endif
 	for( size_t i = 0 ; i < 9 ; ++i){
 		board[i] = 32;	
 	}  
