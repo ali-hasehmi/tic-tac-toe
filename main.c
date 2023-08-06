@@ -3,9 +3,12 @@
 	
 #define OR  ||
 #define AND &&
+
 	char board[9];
 	void board_init();
 	void board_print();
+	void board_clear();
+	void clear_screen();
 	int main(int argc, char *argv[]){
 
 		board_init();
@@ -19,19 +22,19 @@
 void board_init(){
 
 	#ifdef _WIN32
+		// if os is windows(either 64 or 32) these lines will be executed
 		system("chcp 65001");
 	#endif
 	
 	#ifdef __linux__
+		// if os is linux these lines will be executed
 		printf("this program is running on linux operating system!\n");
 	#endif
-	for( size_t i = 0 ; i < 9 ; ++i){
-		board[i] = 32;	
-	}  
-
+	board_clear();
 	}
 	void board_print(){
-
+		
+		clear_screen();
 		size_t index = 0;
 		for( size_t i = 0 ; i < 5 ; ++i){
 			for( size_t j = 0 ; j < 17 ; ++j){
@@ -59,4 +62,14 @@ void board_init(){
 		
 			printf("\n");
 	       	}
+	}
+
+	void clear_screen(){
+		system("cls || clear");
+	}
+
+	void board_clear(){
+		for( size_t i = 0 ; i < 9 ; ++i){
+			board[i] = 32;
+		}
 	}
