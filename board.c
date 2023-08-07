@@ -89,18 +89,9 @@ void board_clear()
 		board[i] = 32;
 	}
 }
-
-void board_getinput()
-{
+void move_focus(){
 	unsigned char input;
-	while ((input = getch()) != '4')
-	{
-
 #ifdef _WIN32
-
-		if (input == 0xE0) // to check scroll key interrupt
-		{
-
 			switch (input = getch())
 			{
 			case 72: // up
@@ -127,14 +118,12 @@ void board_getinput()
 					curr++;
 				}
 				break;
-			};
-		}
+			}
 
 #endif
 
+
 #ifdef __linux__
-		if (input == '\033')
-		{
 			getch();
 			switch ((input = getch()))
 			{
@@ -163,8 +152,21 @@ void board_getinput()
 				}
 				break;
 			}
-		}
 #endif
+
+}
+void board_getinput()
+{
+	unsigned char input;
+	while ((input = getch()) != '4')
+	{
+
+
+		if (input == 0xE0 OR input == '\033') // check if arrow key pressed
+		{
+			move_focus();	
+		}
+
 		board_print();
 		printf("index = %d \n", curr);
 	}
