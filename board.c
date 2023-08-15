@@ -17,7 +17,6 @@
 
 static char board[9];
 static int curr = 0;
-static bool my_turn = true;
 
 void clear_screen()
 {
@@ -40,7 +39,6 @@ void board_init()
 
 void board_print()
 {
-	clear_screen();
 	size_t index = 0;
 	for (size_t i = 0; i < 5; ++i)
 	{
@@ -165,37 +163,13 @@ bool move_focus(){
 		}
 }
 
-bool set_square(){
+bool set_square(char sign){
 
-	if(!my_turn){
-		printf("it's not turn, wait for your opponent to make a move\r");
-		return false;
-	}	
 	if(board[curr]!=32){
 		printf("it's already filled up\r");
 		return false;
 	}
-	board[curr]='X';
-	my_turn = false;
+	board[curr]= sign;
 	return true;
 }
 
-void board_getinput()
-{
-	unsigned char input;
-	bool need_update = false;
-	while ((input = getch()) != '4')
-	{
-		if (input == 0xE0 OR input == '\033') // check if arrow key pressed
-		{
-			need_update = move_focus();	
-		}
-		else if( input == 0x0046 OR input == 0x0066 OR input == 0x000a){ // check if player wants to fill the square
-			need_update = set_square();
-		}
-		if(need_update==true){
-		board_print();
-		printf("index = %d \n", curr);
-		}
-	}
-}

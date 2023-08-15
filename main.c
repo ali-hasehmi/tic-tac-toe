@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "board.h"
+#include "core.h"
 
 #define OR ||
 #define AND &&
@@ -10,11 +10,12 @@
 int main(int argc, char *argv[])
 {
 
-	board_init();
 
-	board_print();
+	init_game("AliReza");
+	
+	new_game(0,NULL);
 
-	board_getinput();
+
 
 	return 0;
 }

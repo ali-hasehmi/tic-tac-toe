@@ -11,5 +11,8 @@ void board_clear();
 
 void board_getinput();
 
+bool set_square(char sign);
+
+bool move_focus();
 #endif
 
