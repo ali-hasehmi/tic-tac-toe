@@ -56,7 +56,7 @@ void waite_for_input(){
 		{
 			need_update = move_focus();	
 		}
-		else if( input == 0x0046 OR input == 0x0066 OR input == 0x000a){ // check if player wants to fill the square
+		else if( input == 0x0046 OR input == 0x0066 OR input == 0x000a OR input == 0x000d){ // check if player wants to fill the square
 			if(!we.turn){
 				printf("it's not your turn!\n");	
 			}
