@@ -14,5 +14,8 @@ void board_getinput();
 bool set_square(char sign);
 
 bool move_focus();
+
+int isGameOver(char _player,char _opp);
+
 #endif
 

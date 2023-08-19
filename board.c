@@ -173,3 +173,64 @@ bool set_square(char sign){
 	return true;
 }
 
+// return  0 => there is no winner
+// return +1 => player won
+// reutrn -1 => opponent won
+int checkWin(char player,char opponent){
+	int sum;	
+	// check Rows
+	for( int i = 0 ; i < 9 ; i+=3){
+		sum = board[i] + board[i+1] + board[i+2];
+		if(sum == 3 * player){
+			return 1;
+		}
+		if(sum == 3* opponent){
+			return -1;
+		}
+	}
+	// check columns
+	for( int i = 0 ; i < 3 ; i++){
+		sum = board[i] + board[i+3] + board[i+6];
+       		if(sum == 3 * player){
+			return 1;
+		}			
+		if(sum == 3 * opponent){
+			return -1;
+		}
+	}
+	// check main diagonal
+	sum = board[0] + board[4] + board[8];
+	if( sum == 3 * player){
+		return 1;
+	}
+	if( sum == 3 * opponent){
+		return -1;
+	}
+	// check other diagonal
+	sum = board[2] + board[4] + board[6];
+	if( sum == 3 * player){
+		return 1;
+	}
+	if( sum == 3 * opponent){
+		return -1;
+	}
+
+	// return 0 indicating there is no winner
+	return 0;
+}
+
+int checkDraw(){
+	for(int i = 0 ; i < 9 ; ++i){
+		if(board[i] == 32){
+		// there is a empty square
+		// return 0 indicates no Draw
+			return 0;
+		}
+	}
+	// value 2 will be returned if there was Draw
+	return 2;
+}
+
+int isGameOver(char _player,char _opp){
+	return ( checkWin(_player,_opp) ? checkWin(_player,_opp) : checkDraw() ); 
+}

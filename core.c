@@ -9,6 +9,7 @@
 
 #define AND &&
 #define OR  ||
+#define NOT !
 
 static player_t we; // this client 
 static player_t opponent; // opponent
@@ -49,8 +50,11 @@ void swap_turns(){
 void waite_for_input(){
 	unsigned char input;
 	bool need_update;
-	while ((input = getch()) != '4')
+	int res;
+	while (!(res = isGameOver(we.sign,opponent.sign)))
 	{
+		//printf("res=%d\n",res);
+		input = getch();
 		need_update = false;
 		if (input == 0xE0 OR input == '\033') // check if arrow key pressed
 		{
@@ -68,6 +72,24 @@ void waite_for_input(){
 		print_game();
 		//printf("index = %d \n", curr);
 		}
+	}
+	
+	// check result of isGameOver()
+	switch(res){
+		case -1:
+		printf("You Lost!\n");
+			break;
+
+		case 1:
+		printf("You Won!\n");		
+			break;
+
+		Case 2 :
+		printf("Draw!\n");
+			break;
+		default:
+			//do something... 
+			//it seems we have a bug...
 	}
 
 }

@@ -10,7 +10,6 @@
 int main(int argc, char *argv[])
 {
 
-
 	init_game("AliReza");
 	
 	new_game(0,NULL);
