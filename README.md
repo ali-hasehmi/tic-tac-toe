@@ -7,6 +7,7 @@ tested with gcc on windows 10
 
 # How to Build in GNU/linux
 tested with gcc on ArchLinux
+
 `gcc main.c core.c board.c input-utils.c -o main -lpthreadg`
 
 
