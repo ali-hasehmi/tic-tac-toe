@@ -17,5 +17,7 @@ bool move_focus();
 
 int isGameOver(char _player,char _opp);
 
+int MakeBestMove(char _player,char _opp);
+
 #endif
 
